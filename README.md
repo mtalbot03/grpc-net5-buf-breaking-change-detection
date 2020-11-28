@@ -17,47 +17,47 @@ but I have only been able to get this working when using the tag. Feel free to g
 2.	Open the yml files next to the solution
 3.  Edit the values to match your own Azure DevOps configuration
 4.  In DevOps, add a new pipeline
-<br>
+
 ![GitHub Logo](/ReadMeImages/PipelineStep1.png)
-<br>
+
 
 5.  Select existing yml
-<br>
+
 ![GitHub Logo](/ReadMeImages/PipelineStep2.png)
-<br>
+
 
 6.  Select a build definition until all have been added. buf.yaml is not a build definition.
 7.  After importing each yaml file, rename them to something like: Gprc_Build_Test, Check_Breaking_Changes, and Update_CheckBreakingChange_Location.
 8.  Open the Update_CheckBreakingChange_Location pipepline, go to the triggers menu and deactivate CI. Add a build completion trigger on the Grpc_Build_Test pipeline on branch main
-<br>
+
 ![GitHub Logo](/ReadMeImages/triggerMenu.png)
-<br>
+
 
 9.  Open the Check_Breaking_Changes pipeline, go to the triggers menu and deactivate CI.
-<br>
+
 ![GitHub Logo](/ReadMeImages/deactivateCI.png)
-<br>
+
 
 10. Go to the branches page, and open the branch policies menu for branch main
-<br>
+
 ![GitHub Logo](/ReadMeImages/branchPolicies.png)
-<br>
+
 
 11. In the Build Validation section, add the Build_Test pipeline and Check_Breaking_Changes pipeline
-<br>
+
 ![GitHub Logo](/ReadMeImages/BuildValidationSetup.png)
-<br>
+
 
 12. Create the initial checkBreakingChangesTag on branch main (if it isn't already present). 
-<br>
+
     git tag checkBreakingChanges (creates local tag)
-<br>
+
     git push --tag checkBreakingChanges (creates remote tag)
-<br>
+
     git tag -d checkBreakingChanges (deletes local tag)
-<br>
+
     git push --delete origin checkBreakingChanges (deletes remote tag)
-<br>
+
 
 13. Run Check_Breaking_Changes pipeline manually, on branch main with an Ubuntu agent
 14. Run Build_Test pipeline manually, on branch main with windows-2019 agent
