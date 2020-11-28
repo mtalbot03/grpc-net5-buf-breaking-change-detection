@@ -1,0 +1,33 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: CmdLine@2
+  displayName: 'Pull HomeBrew'
+  inputs:
+    script: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"'
+
+- task: CmdLine@2
+  displayName: 'Install HomeBrew'
+  inputs:
+    script: 'brew install wget'
+
+
+- task: CmdLine@2
+  displayName: 'Tap Buf'
+  inputs:
+    script: 'brew tap bufbuild/buf'
+
+- task: CmdLine@2
+  displayName: 'Install Buf'
+  inputs:
+    script: 'brew install buf'
+
+- task: CmdLine@2
+  displayName: 'Check Breaking Changes'
+  inputs:
+    script: 'buf check breaking --against ''.git#tag=checkBreakingChanges'''

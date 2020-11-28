@@ -1,0 +1,18 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: CmdLine@2
+  displayName: 'Delete Tag'
+  inputs:
+    script: 'git push https://{PersonalAccessToken}@dev.azure.com/{Organization}/{Project}/_git/{repo} --delete checkBreakingChanges'
+
+- task: CmdLine@2
+  displayName: 'Create Tag'
+  inputs:
+    script: 'git push https://{PersonalAccessToken}@dev.azure.com/{Organization}/{Project}/_git/{repo} --tag checkBreakingChanges'
