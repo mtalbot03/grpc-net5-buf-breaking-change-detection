@@ -1,7 +1,7 @@
 # Introduction 
 (Setup time: 10 min)
 
-Grpc + Buf.build and it's resilience to breaking-changes is what motivation the creation of this project.
+Grpc + Buf.build and it's resilience to breaking-changes is what motivated the creation of this project.
 
 This is the standard Greeter Grpc Demo implemented in Net 5. There is also a Net 5 client for testing purposes. 
 Lastly and most interesting, there are yaml build definitions which can be imported into your own Azure Devops projects to ensure breaking changes
